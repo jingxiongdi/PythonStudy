@@ -1,9 +1,9 @@
-# 2.tkinter±à³Ì
-# ´´½¨GUI³ÌĞòÁ÷³Ì£º
-# ¢Ùµ¼ÈëtkinterÄ£¿é
-# ¢Ú´´½¨¿Ø¼ş
-# ¢ÛÖ¸¶¨¿Ø¼şµÄ×é¼ş£¬²¢·ÅÖÃµ½Ö÷´°¿ÚÖĞ
-# ¢Ü¸æËß½çÃæ¹ÜÀíÆ÷£¨geometry manager£©ÓĞ¿Ø¼ş²úÉú
+# 2.tkinterç¼–ç¨‹
+# åˆ›å»ºGUIç¨‹åºæµç¨‹ï¼š
+# â‘ å¯¼å…¥tkinteræ¨¡å—
+# â‘¡åˆ›å»ºæ§ä»¶
+# â‘¢æŒ‡å®šæ§ä»¶çš„ç»„ä»¶ï¼Œå¹¶æ”¾ç½®åˆ°ä¸»çª—å£ä¸­
+# â‘£å‘Šè¯‰ç•Œé¢ç®¡ç†å™¨ï¼ˆgeometry managerï¼‰æœ‰æ§ä»¶äº§ç”Ÿ
 import os
 import pygame
 from tkinter import *
@@ -12,7 +12,7 @@ from tkinter.filedialog import askdirectory
 def mouseCallBack(*args):
     indexs = listb.curselection()
     index = int(indexs[0])
-    #str_value = str(index)#Êı×Ö×ª×Ö·û´®
+    #str_value = str(index)#æ•°å­—è½¬å­—ç¬¦ä¸²
     print(" mouse click "+path_+"/"+listSongs[index])
     curPath = path_+"/"+listSongs[index]
     try:
@@ -32,7 +32,7 @@ def getMp3List(folder):
     listSongs = []
     counter = 0
 
-    #ÎªµÚÒ»¸öListboxÉèÖÃ°ó¶¨ÊÂ¼ş
+    #ä¸ºç¬¬ä¸€ä¸ªListboxè®¾ç½®ç»‘å®šäº‹ä»¶
     listb.bind("<<ListboxSelect>>",mouseCallBack)
     while counter < len(list):
         if os.path.splitext(list[counter])[1]==".mp3":
@@ -50,21 +50,21 @@ def selectFile():
     print("path_ "+path_)
     getMp3List(path_)
 def about():
-    label = Label(root, text='»¨¾°ÒôÀÖµçÄÔ°æ\n ', fg='red', bg='white')
+    label = Label(root, text='èŠ±æ™¯éŸ³ä¹ç”µè„‘ç‰ˆ\n ', fg='red', bg='white')
     label.pack(expand=YES, fill=BOTH)
 root = Tk()
 path = StringVar()
 menubar = Menu(root)
 filemenu = Menu(menubar, tearoff=0)
-filemenu.add_command(label='´ò¿ª', command=selectFile)
-filemenu.add_command(label='±£´æ')
+filemenu.add_command(label='æ‰“å¼€', command=selectFile)
+filemenu.add_command(label='ä¿å­˜')
 filemenu.add_separator()
-filemenu.add_command(label='ÍË³ö', command=root.quit)
-menubar.add_cascade(label='ÎÄ¼ş', menu=filemenu)
+filemenu.add_command(label='é€€å‡º', command=root.quit)
+menubar.add_cascade(label='æ–‡ä»¶', menu=filemenu)
 helpmenu = Menu(menubar, tearoff=0)
-helpmenu.add_command(label='¹ØÓÚ×÷Õß', command=about)
-menubar.add_cascade(label='¹ØÓÚ', menu=helpmenu)
+helpmenu.add_command(label='å…³äºä½œè€…', command=about)
+menubar.add_cascade(label='å…³äº', menu=helpmenu)
 listb  = Listbox(root,width=500,height=300)
 root.config(menu=menubar)
 root.geometry('800x500')
-root.mainloop()+
+root.mainloop()
