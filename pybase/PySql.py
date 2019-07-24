@@ -3,7 +3,7 @@ import sqlite3
 #表示创建一个数据库,并获得连接
 connection = sqlite3.connect("ab.db")
 
-cursor = connection.cursor()
+mycursor = connection.cursor()
 #创建表
 #sql =  "create table company( 'id' int primary key not null,'name' text not null,'salary' text not null)"
 #cursor.execute(sql)

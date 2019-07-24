@@ -3,7 +3,7 @@ import sqlite3
 import xlrd
 
 connection = sqlite3.connect("blessing.db")
-cursor = connection.cursor()
+mycursor = connection.cursor()
 
 pinganyeSql =  "create table pinganye( 'id' int primary key not null,'pinganye' text not null)"
 yuandanSql = "create table yuandan( 'id' int primary key not null,'yuandan' text not null)"
@@ -28,7 +28,7 @@ sqlArr = [pinganyeSql,yuandanSql,shengdanSql,chunjieSql,yuanxiaoSql,chuxiSql,fuq
           duanwuSql,kaiyeSql,qiaoqianSql,xideguiziSql,manyueSql,zhongqiuSql]
 connection.execute("BEGIN TRANSACTION;") # 关键点
 for sqlStr in sqlArr:
-    cursor.execute(sqlStr)
+    mycursor.execute(sqlStr)
 
 data = xlrd.open_workbook("祝福语大全.xls")
 sheetIndex = 0;
@@ -44,7 +44,7 @@ for tableName in data.sheet_names():
         sqlData = sttr3.replace("\\xa0","")
         sqlAdd = "insert into "+colunmArr[sheetIndex]+" (id,"+colunmArr[sheetIndex]+") values ("+str(valueIndex)+","+sqlData+")"
         print(sqlAdd)
-        cursor.execute(sqlAdd)
+        mycursor.execute(sqlAdd)
     sheetIndex+=1
 connection.execute("COMMIT;")  #关键点
 connection.commit()
